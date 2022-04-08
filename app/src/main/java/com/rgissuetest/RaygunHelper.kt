@@ -6,6 +6,7 @@ import com.raygun.raygun4android.CrashReportingOnBeforeSend
 import com.raygun.raygun4android.RaygunClient
 import com.raygun.raygun4android.messages.crashreporting.RaygunMessage
 
+
 class RaygunHelper {
     companion object {
         fun initRaygunClient(mActivity: Activity) {
@@ -25,9 +26,14 @@ class RaygunHelper {
 
         class SampleOnBeforeSend : CrashReportingOnBeforeSend {
             override fun onBeforeSend(message: RaygunMessage): RaygunMessage {
+
+                val details = message.details
+                val error = details.error
+                error.message = "My own Message"
+
                 Log.d(
                     "Raygun4Android-Sample",
-                    "In SampleOnBeforeSend - About to post to Raygun, returning the payload as is..."
+                    "In SampleOnBeforeSend - About to post to Raygun"
                 )
                 return message
             }

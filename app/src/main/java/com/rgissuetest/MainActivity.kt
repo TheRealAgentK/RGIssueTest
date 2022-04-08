@@ -20,14 +20,8 @@ class MainActivity : AppCompatActivity() {
 
         val tw = HashMap<String,String>()
         tw["secondkey"] = "secondvalue"
-
         // Manual exception creation & sending
         RaygunClient.send(Exception("Congratulations, you have sent errors with Raygun4Android"), null, tw)
-
-        // A real exception will be thrown here, which will be caught & sent by RaygunClient
-        val i = 3 / 0
-        Log.d("Raygun4Android-Sample", "This is here purely so that our division by zero calculation in i gets used and not optimised away in a release build: $i")
-
     }
 
     private fun initRaygun() {
